@@ -1,0 +1,13 @@
+[package]
+name = "chat"
+version = "0.1.0"
+authors = ["exfly <exflyg@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+mio = "0.5"
+http-muncher = "0.2.1"
+sha1 = "0.1.1"
+rustc-serialize = "0.3.15"
