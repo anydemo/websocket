@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>WebSocket Demo</title>
+  </head>
+  <body>
+    <h2>Hello World</h2>
+    <section>
+      <input id="input" type="text" /> <button onclick="send()">Send</button>
+    </section>
+    <script>
+      let ws = new WebSocket("ws://127.0.0.1:10000");
+      console.log("Attempting Connection...");
+      ws.onopen = () => {
+        console.log("Successfully Connected");
+        ws.send("Hi From the Client!");
+      };
+      ws.onclose = event => {
+        console.log("Socket Closed Connection: ", event);
+        ws.send("Client Closed!");
+      };
+      ws.onerror = error => {
+        console.log("Socket Error: ", error);
+      };
+      ws.onmessage = function(event) {
+        console.log("Received response: ", event.data);
+      };
+      var input = document.getElementById("input");
+      function send() {
+        ws.send(input.value);
+        input.value = "";
+      }
+    </script>
+  </body>
+</html>
